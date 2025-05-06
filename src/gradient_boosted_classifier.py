@@ -100,7 +100,7 @@ def create_gbm_with_set_hyperparameters(
 
     return model
 
-def evaluate_gbm(model, X_val, y_val, plot_path=None):
+def evaluate_gbm(model, X_train, X_val, y_train, y_val, plot_path=None):
     y_pred = model.predict(X_val)
     y_proba = model.predict_proba(X_val)[:, 1]
 
@@ -137,6 +137,22 @@ def evaluate_gbm(model, X_val, y_val, plot_path=None):
         print(f"Saved PR curve to {plot_path}")
     else:
         plt.show()
+
+    # show feature importances
+    importances = model.feature_importances_
+    features = X_train.columns
+
+    # Create a sorted Series
+    feat_importances = pd.Series(importances, index=features).sort_values(ascending=True)
+
+    # Plot
+    plt.figure(figsize=(8, 6))
+    feat_importances.plot(kind='barh')
+    plt.title('Feature Importances - Gradient Boosted Classifier')
+    plt.xlabel('Importance')
+    plt.tight_layout()
+    plt.savefig("data/outputs/feature_importances.png")
+    plt.show()
 
     plt.close()
     return metrics

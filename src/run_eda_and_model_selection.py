@@ -10,7 +10,7 @@ import config
 
 if __name__ == "__main__":
     # Load
-    df = u.load_data()
+    df = u.load_data(location=config.DATA_INPUT_LOCATION)
 
     # Exploratory Data Analysi
     eda.run_explorations(df)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # )
 
     final_model = joblib.load('src/model_store/final_model.pkl')
-    metrics = evaluate_gbm(final_model, X_val, y_val, plot_path="data/outputs/pr_curve.png")
+    metrics = evaluate_gbm(final_model, X_train, X_val, y_train, y_val, plot_path="data/outputs/pr_curve.png")
     print("final metrics")
     print(metrics)
 
