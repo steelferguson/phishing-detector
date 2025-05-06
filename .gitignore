@@ -176,3 +176,7 @@ cython_debug/
 # input files
 .csv 
 .json
+
+# venv
+ven/
+venv/
