@@ -1,0 +1,2 @@
+n_estimators,learning_rate,max_depth,min_samples_split,subsample,precision,recall,f1,roc_auc
+900,0.1,5,5,0.8,0.7126436781609196,0.22302158273381295,0.33972602739726027,0.8734812941305578
